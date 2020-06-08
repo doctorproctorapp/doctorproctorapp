@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Brand from "../components/Brand";
 
 import { UserContext } from "../utils/UserContext";
 
@@ -104,10 +105,11 @@ const Login = () => {
 
   return (
     <PageLayout>
-      <BrandContainer>doctorproctorapp</BrandContainer>
+      <BrandContainer>
+        <Brand to="/">doctorproctorapp</Brand>
+      </BrandContainer>
       <FormLayout>
         <div>
-          <pre>{JSON.stringify(user, null, 2)}</pre>
           <HeadingText>Sign in to your account</HeadingText>
           <Form>
             <Form.Group controlId="formBasicEmail">

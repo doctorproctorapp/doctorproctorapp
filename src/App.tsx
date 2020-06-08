@@ -30,6 +30,7 @@ function App() {
             <Dashboard />
           </Route> */}
         </Switch>
+        <pre>{JSON.stringify(user, null, 2)}</pre>
       </UserContext.Provider>
     </div>
   );
