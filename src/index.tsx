@@ -3,21 +3,25 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.scss';
 // import * as serviceWorker from './serviceWorker';
-import AWSAppSyncClient from 'aws-appsync';
-import { ApolloProvider } from 'react-apollo';
-import { Rehydrated } from 'aws-appsync-react';
-import * as AWS from 'aws-sdk';
-import config from './AppSync';
-import awsconfig from './aws-exports';
+// import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
+// import { Rehydrated } from 'aws-appsync-react';
+// import config from './AppSync';
+// import awsconfig from './aws-exports';
 
-const client = new AWSAppSyncClient({
-  url: config.aws_appsync_graphqlEndpoint,
-  region: config.aws_appsync_region,
-  auth: {
-    type: config.aws_appsync_authenticationType,
-    apiKey: config.aws_appsync_apiKey,
-  },
-});
+// import { ApolloProvider } from 'react-apollo';
+// import { createHttpLink } from 'apollo-link-http';
+// import { ApolloClient } from 'apollo-client';
+// import { InMemoryCache } from 'apollo-cache-inmemory';
+import WithProvider from './utils/ApolloProvider';
+
+// const client = new AWSAppSyncClient({
+//   url: config.aws_appsync_graphqlEndpoint,
+//   region: config.aws_appsync_region,
+//   auth: {
+//     type: config.aws_appsync_authenticationType,
+//     apiKey: config.aws_appsync_apiKey,
+//   },
+// });
 
 // const client = new AWSAppSyncClient({
 //   url:
@@ -29,15 +33,16 @@ const client = new AWSAppSyncClient({
 //   },
 // });
 
-console.log(client);
+// console.log(client);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Rehydrated>
-        <App />
-      </Rehydrated>
-    </ApolloProvider>
+    {/* <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider> */}
+    <WithProvider>
+      <App />
+    </WithProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

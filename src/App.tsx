@@ -22,8 +22,8 @@ const GET_LOGIN = gql`
 function App() {
   const [user, setUser] = useState(null);
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
-  const { loading, data } = useQuery(GET_LOGIN);
-  console.log(loading);
+  // const { loading, data } = useQuery(GET_LOGIN);
+  // console.log(loading);
 
   return (
     <div className="App">
@@ -43,7 +43,7 @@ function App() {
                   <Link to="/app">Go to dashboard</Link>
                 </li>
               </ul>
-              {loading ? <p>Loading...</p> : data && JSON.stringify(data)}
+              {/* {loading ? <p>Loading...</p> : data && JSON.stringify(data)} */}
             </Route>
             <Route path="/login">
               <Login />

@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Brand from '../components/Brand';
 import { UserContext } from '../utils/UserContext';
-
 import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
+import gql from 'graphql-tag';
+// import { graphql, compose } from 'react-apollo';
 import { useFormik } from 'formik';
 
 // import { login } from "../utils/auth";
@@ -112,8 +112,9 @@ const REGISTER_USER = gql`
     }
   }
 `;
+
 const Register = () => {
-  // const [registerUser, { data }] = useMutation(REGISTER_USER);
+  const [registerUser, { data }] = useMutation(REGISTER_USER);
 
   const formik = useFormik({
     initialValues: {
@@ -121,8 +122,12 @@ const Register = () => {
       password: '',
     },
     onSubmit: ({ username, password }) => {
-      // registerUser({ variables: { username, password } });
-      console.log(username, password);
+      try {
+        registerUser({ variables: { username, password } });
+        console.log(username, password);
+      } catch (err) {
+        console.log(err);
+      }
     },
   });
 
@@ -175,5 +180,16 @@ const Register = () => {
     </PageLayout>
   );
 };
+
+// export default compose(
+//   graphql(GET_LOGIN, {
+//     options: {
+//       fetchPolicy: 'cache-and-network',
+//     },
+//     props: (props) => ({
+//       data: props.data,
+//     }),
+//   })
+// )(Register);
 
 export default Register;
