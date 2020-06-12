@@ -1,37 +1,45 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import "./index.scss";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './index.scss';
 // import * as serviceWorker from './serviceWorker';
-import Client from 'aws-appsync'
-import {ApolloProvider} from 'react-apollo'
-import {Rehydrated} from 'aws-appsync-react'
-import AppSync from './AppSync'
-import { BrowserRouter } from "react-router-dom";
+import AWSAppSyncClient from 'aws-appsync';
+import { ApolloProvider } from 'react-apollo';
+import { Rehydrated } from 'aws-appsync-react';
+import * as AWS from 'aws-sdk';
+import config from './AppSync';
+import awsconfig from './aws-exports';
 
-const client = new Client( {
-  url: AppSync.aws_appsync_graphqlEndpoint,
-  region: AppSync.aws_appsync_region,
+const client = new AWSAppSyncClient({
+  url: config.aws_appsync_graphqlEndpoint,
+  region: config.aws_appsync_region,
   auth: {
-    type: 'API_KEY',
-    apiKey: AppSync.aws_appsync_apiKey
-  }
-})
+    type: config.aws_appsync_authenticationType,
+    apiKey: config.aws_appsync_apiKey,
+  },
+});
 
-const WithProvider = () => (
-  <ApolloProvider client = {client}>
-    <Rehydrated>
-      <App/>
-    </Rehydrated>
-  </ApolloProvider>
-)
+// const client = new AWSAppSyncClient({
+//   url:
+//     'https://bxe5v6iprzgmvcsh6qulm7cb4y.appsync-api.us-west-2.amazonaws.com/graphql',
+//   region: 'us-west-2',
+//   auth: {
+//     type: 'API_KEY',
+//     apiKey: 'da2-jp7u5wobkref3bwe3p5t5dv2jy',
+//   },
+// });
+
+console.log(client);
+
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <WithProvider/>
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <Rehydrated>
+        <App />
+      </Rehydrated>
+    </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import styled from "styled-components";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Brand from "../components/Brand";
+import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Brand from '../components/Brand';
+import { UserContext } from '../utils/UserContext';
 
-import { UserContext } from "../utils/UserContext";
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
-import { login } from "../utils/auth";
+import { useFormik } from 'formik';
+
+// import { login } from "../utils/auth";
 
 const HeadingText = styled.div`
   line-height: 28px;
@@ -17,7 +21,7 @@ const HeadingText = styled.div`
 `;
 
 const BrandContainer = styled.div`
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   padding-bottom: 24px;
   padding-top: 48px;
   line-height: 28px;
@@ -100,8 +104,27 @@ const LabelAlternate = styled.span`
   }
 `;
 
-const Login = () => {
-  const { user, setUser } = useContext(UserContext);
+const REGISTER_USER = gql`
+  mutation RegisterAccount($username: String, $password: String) {
+    createLogin(input: { username: $username, password: $password }) {
+      username
+      password
+    }
+  }
+`;
+const Register = () => {
+  // const [registerUser, { data }] = useMutation(REGISTER_USER);
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    onSubmit: ({ username, password }) => {
+      // registerUser({ variables: { username, password } });
+      console.log(username, password);
+    },
+  });
 
   return (
     <PageLayout>
@@ -110,31 +133,41 @@ const Login = () => {
       </BrandContainer>
       <FormLayout>
         <div>
-          <HeadingText>Sign in to your account</HeadingText>
-          <Form>
+          <HeadingText>Create a new account</HeadingText>
+          <Form onSubmit={formik.handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-              <FormLabel>Email</FormLabel>
-              <FormControl type="email" placeholder="Enter email" />
+              <FormLabel>Username</FormLabel>
+              <FormControl
+                type="username"
+                placeholder="Enter username"
+                name="username"
+                onChange={formik.handleChange}
+                value={formik.values.username}
+              />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <FormLabel>
-                Password
-                <LabelAlternate>Forgot your password?</LabelAlternate>
-              </FormLabel>
-              <FormControl type="password" placeholder="Password" />
+              <FormLabel>Password</FormLabel>
+              <FormControl
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
             </Form.Group>
+            {/* <Form.Group controlId="formBasicPasswordConfirm">
+              <FormLabel>Confirm password</FormLabel>
+              <FormControl type="password" placeholder="Confirm Password" />
+            </Form.Group> */}
             <Form.Group controlId="formBasicCheckbox" className="my-4">
-              <Form.Check type="checkbox" label="Stay signed in for a week." />
+              <Form.Check
+                type="checkbox"
+                label="Agree to Terms and Conditions"
+              />
             </Form.Group>
-            <StyledButton
-              variant="primary"
-              onClick={async () => {
-                const user = await login();
-                setUser(user);
-              }}
-            >
-              Continue
+            <StyledButton variant="primary" type="submit">
+              Create an account
             </StyledButton>
           </Form>
         </div>
@@ -143,4 +176,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
