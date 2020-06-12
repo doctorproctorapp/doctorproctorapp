@@ -6,18 +6,17 @@ import { UserContext } from './utils/UserContext';
 import Register from './pages/Register';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-// import { Query } from 'react-apollo';
+// import { useQuery } from '@apollo/react-hooks';
+// import gql from 'graphql-tag';
 
-const GET_LOGIN = gql`
-  query Login {
-    getLogin(username: "Andrew") {
-      username
-      password
-    }
-  }
-`;
+// const GET_LOGIN = gql`
+//   query Login {
+//     getLogin(username: "Andrew") {
+//       username
+//       password
+//     }
+//   }
+// `;
 
 function App() {
   const [user, setUser] = useState(null);

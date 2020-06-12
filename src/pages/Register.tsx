@@ -1,17 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Brand from '../components/Brand';
-import { UserContext } from '../utils/UserContext';
 import { useMutation } from '@apollo/react-hooks';
 
 import gql from 'graphql-tag';
-// import { graphql, compose } from 'react-apollo';
 import { useFormik } from 'formik';
-
-// import { login } from "../utils/auth";
 
 const HeadingText = styled.div`
   line-height: 28px;
