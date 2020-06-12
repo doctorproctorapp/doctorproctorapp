@@ -116,6 +116,7 @@ const Register = () => {
     initialValues: {
       username: '',
       password: '',
+      passwordConfirmation: '',
     },
     onSubmit: ({ username, password }) => {
       try {
@@ -139,9 +140,10 @@ const Register = () => {
             <Form.Group controlId="formBasicEmail">
               <FormLabel>Username</FormLabel>
               <FormControl
-                type="username"
+                type="text"
                 placeholder="Enter username"
                 name="username"
+                autoComplete="username"
                 onChange={formik.handleChange}
                 value={formik.values.username}
               />
@@ -153,14 +155,21 @@ const Register = () => {
                 type="password"
                 placeholder="Password"
                 name="password"
+                autoComplete="new-password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
               />
             </Form.Group>
-            {/* <Form.Group controlId="formBasicPasswordConfirm">
+            <Form.Group controlId="formBasicPasswordConfirm">
               <FormLabel>Confirm password</FormLabel>
-              <FormControl type="password" placeholder="Confirm Password" />
-            </Form.Group> */}
+              <FormControl
+                type="password"
+                autoComplete="new-password"
+                placeholder="Confirm Password"
+                onChange={formik.handleChange}
+                value={formik.values.passwordConfirmation}
+              />
+            </Form.Group>
             <Form.Group controlId="formBasicCheckbox" className="my-4">
               <Form.Check
                 type="checkbox"

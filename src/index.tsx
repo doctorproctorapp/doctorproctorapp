@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.scss';
 
-import WithProvider from './utils/ApolloProvider';
+import WithProvider from './utils/WithProvider';
 
 ReactDOM.render(
   <React.StrictMode>

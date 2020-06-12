@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import styled from "styled-components";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Brand from "../components/Brand";
+import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Brand from '../components/Brand';
 
-import { UserContext } from "../utils/UserContext";
+import { UserContext } from '../utils/UserContext';
 
-import { login } from "../utils/auth";
+import { login } from '../utils/auth';
 
 const HeadingText = styled.div`
   line-height: 28px;
@@ -17,7 +17,7 @@ const HeadingText = styled.div`
 `;
 
 const BrandContainer = styled.div`
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   padding-bottom: 24px;
   padding-top: 48px;
   line-height: 28px;
@@ -114,7 +114,11 @@ const Login = () => {
           <Form>
             <Form.Group controlId="formBasicEmail">
               <FormLabel>Email</FormLabel>
-              <FormControl type="email" placeholder="Enter email" />
+              <FormControl
+                type="email"
+                autoComplete="username"
+                placeholder="Enter email"
+              />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -122,7 +126,11 @@ const Login = () => {
                 Password
                 <LabelAlternate>Forgot your password?</LabelAlternate>
               </FormLabel>
-              <FormControl type="password" placeholder="Password" />
+              <FormControl
+                type="password"
+                autoComplete="current-password"
+                placeholder="Password"
+              />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox" className="my-4">
               <Form.Check type="checkbox" label="Stay signed in for a week." />
