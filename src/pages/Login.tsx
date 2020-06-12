@@ -66,7 +66,7 @@ const FormLabel = styled(Form.Label)`
   font-size: 14px;
   color: var(--secondary);
   display: flex;
-  flex-spacing: between;
+  justify-content: space-between;
 `;
 
 const StyledButton = styled(Button)`
