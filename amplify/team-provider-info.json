@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-doctorproctorapp-dev-165811-authRole",
+            "UnauthRoleArn": "arn:aws:iam::249943838717:role/amplify-doctorproctorapp-dev-165811-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::249943838717:role/amplify-doctorproctorapp-dev-165811-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-doctorproctorapp-dev-165811-deployment",
+            "UnauthRoleName": "amplify-doctorproctorapp-dev-165811-unauthRole",
+            "StackName": "amplify-doctorproctorapp-dev-165811",
+            "StackId": "arn:aws:cloudformation:us-west-2:249943838717:stack/amplify-doctorproctorapp-dev-165811/928ac7e0-b1bf-11ea-a23e-0af6392a9a8a",
+            "AmplifyAppId": "d1c98jls1v07dn"
+        },
+        "categories": {
+            "auth": {
+                "doctorproctorapp3b77015a": {}
+            }
+        }
+    }
+}
